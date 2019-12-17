@@ -5,3 +5,11 @@ export const Container = styled.SafeAreaView`
   align-items: center;
   padding: 15px 30px;
 `;
+
+export const Trend = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { paddingTop: 10 },
+})`
+  margin-top: 20px;
+  align-self: stretch;
+`;
