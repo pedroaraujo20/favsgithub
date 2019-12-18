@@ -15,12 +15,17 @@ import {
   Itens,
   Amount,
   Url,
+  UrlLink,
   BackButton,
   ButtonText,
 } from './styles';
 
 export default function Repository({ navigation }) {
   const repo = navigation.getParam('item');
+
+  function handleNavigate(url) {
+    navigation.navigate('WebView', { url });
+  }
 
   return (
     <Background>
@@ -43,7 +48,11 @@ export default function Repository({ navigation }) {
               <Amount>{repo.issues.totalCount}</Amount>
             </Itens>
           </Wrapper>
-          <Url>{repo.url}</Url>
+          <Url>
+            <UrlLink onPress={() => handleNavigate(repo.url)}>
+              {repo.url}
+            </UrlLink>
+          </Url>
         </Repo>
         <BackButton onPress={() => navigation.goBack()}>
           <ButtonText>Back</ButtonText>

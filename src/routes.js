@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Trending from '~/pages/Trending';
 import Favorites from '~/pages/Favorites';
 import Repository from '~/pages/Repository';
+import WebView from '~/pages/WebView';
 
 export default createAppContainer(
   createStackNavigator(
@@ -26,6 +27,7 @@ export default createAppContainer(
         }
       ),
       Repository,
+      WebView,
     },
     {
       headerMode: 'none',

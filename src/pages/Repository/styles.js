@@ -41,7 +41,9 @@ export const Amount = styled.Text`
   margin-left: 5px;
 `;
 
-export const Url = styled.Text`
+export const Url = styled.TouchableOpacity``;
+
+export const UrlLink = styled.Text`
   margin-top: 20px;
   align-self: center;
   color: #fff;

@@ -15,6 +15,7 @@
 
 - Foi utilizado para criação do app:
   - React Native;
+  - Redux;
   - Graphql, Apollo Client para conexão com a Api do GitHub;
   - Styled-Components para estilização dos componentes e pages;
   - React Navigation para navegação entre as pages;  
