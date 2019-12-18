@@ -15,11 +15,7 @@ import { Container, Trend, Title } from './styles';
 
 const GET_TRENDINGS = gql`
   query {
-    search(
-      query: "language:JavaScript stars:>10000"
-      type: REPOSITORY
-      first: 10
-    ) {
+    search(query: "stars:>10000", type: REPOSITORY, first: 10) {
       repositoryCount
       edges {
         node {
@@ -37,7 +33,6 @@ const GET_TRENDINGS = gql`
             forks {
               totalCount
             }
-            updatedAt
           }
         }
       }
