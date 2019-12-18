@@ -10,7 +10,7 @@ import { removeFromFavs } from '~/store/modules/favs/actions';
 
 import { Container, Favs, Title } from './styles';
 
-export default function Favorites() {
+export default function Favorites({ navigation }) {
   const favs = useSelector(state => state.favs);
   const dispatch = useDispatch();
 
@@ -18,16 +18,24 @@ export default function Favorites() {
     dispatch(removeFromFavs(id));
   }
 
+  function handleNavigate(item) {
+    navigation.navigate('Repository', { item });
+  }
+
   return (
     <Background>
       <Container>
         <Header />
-        <Title>Favorites</Title>
+        <Title>Favorites ({favs.length})</Title>
         <Favs
           data={favs}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
-            <FavsList data={item} unfav={() => handleRemoveFav(item.id)} />
+            <FavsList
+              data={item}
+              moreInfo={() => handleNavigate(item)}
+              unfav={() => handleRemoveFav(item.id)}
+            />
           )}
         />
       </Container>

@@ -12,7 +12,11 @@ export const Favorite = styled.View`
   border-radius: 6px;
 `;
 
-export const Unfav = styled.TouchableOpacity``;
+export const MoreInfo = styled.TouchableOpacity``;
+
+export const Info = styled.View`
+  flex-direction: column;
+`;
 
 export const Name = styled.Text`
   color: #fff;
@@ -20,3 +24,16 @@ export const Name = styled.Text`
   font-weight: bold;
   margin-bottom: 5px;
 `;
+
+export const StarsCounter = styled.View`
+  flex-direction: row;
+`;
+
+export const Stars = styled.Text`
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 3px;
+`;
+
+export const Unfav = styled.TouchableOpacity``;

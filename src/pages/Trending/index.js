@@ -26,7 +26,11 @@ const GET_TRENDINGS = gql`
           ... on Repository {
             id
             name
-            descriptionHTML
+            url
+            description
+            issues(states: OPEN) {
+              totalCount
+            }
             stargazers {
               totalCount
             }
@@ -41,7 +45,7 @@ const GET_TRENDINGS = gql`
   }
 `;
 
-export default function Trending() {
+export default function Trending({ navigation }) {
   const dispatch = useDispatch();
   const { loading, error, data } = useQuery(GET_TRENDINGS);
   const { edges } = data.search;
@@ -50,6 +54,10 @@ export default function Trending() {
 
   function handleAddFav(fav) {
     dispatch(addToFavs(fav));
+  }
+
+  function handleNavigate(item) {
+    navigation.navigate('Repository', { item });
   }
 
   return (
@@ -69,6 +77,7 @@ export default function Trending() {
             keyExtractor={item => String(item.node.id)}
             renderItem={({ item }) => (
               <TrendList
+                moreInfo={() => handleNavigate(item.node)}
                 addToFavs={() => handleAddFav(item.node)}
                 data={item}
               />
