@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ActivityIndicator, Text, Alert } from 'react-native';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { ActivityIndicator, Text } from 'react-native';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,7 +9,9 @@ import Background from '~/components/Background';
 import TrendList from '~/components/TrendList';
 import Header from '~/components/Header';
 
-import { Container, Trend } from './styles';
+import { addToFavs } from '~/store/modules/favs/actions';
+
+import { Container, Trend, Title } from './styles';
 
 const GET_TRENDINGS = gql`
   query {
@@ -38,29 +41,22 @@ const GET_TRENDINGS = gql`
   }
 `;
 
-export default function Trending({ navigation }) {
-  const [fav, setFav] = useState([]);
+export default function Trending() {
+  const dispatch = useDispatch();
   const { loading, error, data } = useQuery(GET_TRENDINGS);
   const { edges } = data.search;
 
   if (error) return <Text>Server Error!</Text>;
 
-  function addToFavs(id) {
-    const findById = fav.filter(f => f.id === id);
-    if (findById.length > 1) {
-      Alert.alert('Already in your favorites!');
-      return;
-    }
-    const selected = edges.filter(item => item.node.id === id);
-
-    setFav(selected);
-    Alert.alert('Added to favorites');
+  function handleAddFav(fav) {
+    dispatch(addToFavs(fav));
   }
 
   return (
     <Background>
       <Container>
         <Header />
+        <Title>Trending</Title>
         {loading ? (
           <ActivityIndicator
             style={{ marginTop: 200 }}
@@ -73,7 +69,7 @@ export default function Trending({ navigation }) {
             keyExtractor={item => String(item.node.id)}
             renderItem={({ item }) => (
               <TrendList
-                addToFavs={() => addToFavs(item.node.id)}
+                addToFavs={() => handleAddFav(item.node)}
                 data={item}
               />
             )}

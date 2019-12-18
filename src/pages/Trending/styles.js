@@ -6,6 +6,13 @@ export const Container = styled.SafeAreaView`
   padding: 15px 30px;
 `;
 
+export const Title = styled.Text`
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 30px;
+  color: #fff;
+`;
+
 export const Trend = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: { paddingTop: 10 },

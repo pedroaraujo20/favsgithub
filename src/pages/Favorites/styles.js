@@ -5,3 +5,18 @@ export const Container = styled.SafeAreaView`
   align-items: center;
   padding: 15px 30px;
 `;
+
+export const Title = styled.Text`
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 30px;
+  color: #fff;
+`;
+
+export const Favs = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { paddingTop: 10 },
+})`
+  margin-top: 20px;
+  align-self: stretch;
+`;
